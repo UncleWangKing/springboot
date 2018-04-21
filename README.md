@@ -7,12 +7,12 @@
 ## ps:使用lombok
 
 建表语句<br>
-CREATE TABLE `sys_user` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(255) DEFAULT NULL,
-  `pass_word` varchar(255) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `last_login_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_name` (`user_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+CREATE TABLE `sys_user` (<br>
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,<br>
+  `user_name` varchar(255) DEFAULT NULL,<br>
+  `pass_word` varchar(255) DEFAULT NULL,<br>
+  `create_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,<br>
+  `last_login_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,<br>
+  PRIMARY KEY (`id`),<br>
+  UNIQUE KEY `user_name` (`user_name`)<br>
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;<br>
