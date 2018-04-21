@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.envprotection.system.dao.UserDao">
+    <select id="queryList" resultType="User">
+        SELECT
+        <include refid="sql_query"/>
+        FROM sys_user
+    </select>
+
+    <select id="queryUserById" resultType="User">
+        SELECT
+          <include refid="sql_query"/>
+        FROM sys_user WHERE id = #{id}
+    </select>
+
+    <select id="queryUserByUserName" resultType="User">
+        SELECT
+          <include refid="sql_query"/>
+        FROM sys_user WHERE user_name = #{userName}
+    </select>
+
+    <insert id="save" parameterType="User">
+        insert into sys_user
+        (
+            user_name,
+            pass_word,
+            create_date,
+            last_login_date
+        )
+        values
+        (
+            #{obj.userName},
+            #{obj.passWord},
+            #{obj.createDate},
+            #{obj.lastLoginDate}
+        )
+    </insert>
+
+    <update id="update" parameterType="User">
+        update sys_user
+        <set>
+            <if test="obj.userName != null">user_name = #{obj.userName},</if>
+            <if test="obj.passWord != null">pass_word = #{obj.passWord},</if>
+            <if test="obj.createDate != null">create_date = #{obj.createDate},</if>
+            <if test="obj.lastLoginDate != null">last_login_date = #{obj.lastLoginDate}</if>
+        </set>
+        where id = #{obj.id}
+    </update>
+
+    <delete id="batchDelete">
+        delete from sys_user
+        <where>
+            <foreach collection="list" item="id" index="index" separator=" OR " open="(" close=")">
+                id = #{id}
+            </foreach>
+        </where>
+    </delete>
+
+    <sql id="sql_query">
+        id,
+        user_name,
+        pass_word,
+        create_date,
+        last_login_date
+    </sql>
+</mapper>
